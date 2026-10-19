@@ -33,6 +33,7 @@ def save_site(url, html, name):
     """Guarda una copia estática navegable (HTML + css/js/imágenes) en data/site/."""
     site = OUT / "site"
     site.mkdir(parents=True, exist_ok=True)
+    html = html.replace("526243186477", "526242261023").replace("+52-624-318-6477", "+52-624-226-1023")
     (site / name).write_text(html, encoding="utf-8")
     soup = BeautifulSoup(html, "html.parser")
     refs = {urljoin(url, t[a]) for t, a in
