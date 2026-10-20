@@ -67,7 +67,8 @@ def main():
         name = (urlparse(url).path.strip("/").replace("/", "_") or "index") + ".html"
         (OUT / "html" / name).write_text(r.text, encoding="utf-8")
         page = parse(url, r.text)
-        save_site(url, r.text, name)
+        # save_site desactivado: data/site/ se edita a mano y no debe sobrescribirse.
+        # save_site(url, r.text, name)
         pages.append(page)
         queue += [l for l in page["links"] if urlparse(l).netloc == host and l not in seen]
         print("OK", url)
