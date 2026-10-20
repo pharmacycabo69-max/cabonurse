@@ -58,7 +58,8 @@
   // greeting rather than an interruption. Silently skipped if storage
   // is unavailable (private browsing, etc).
   try {
-    if (!sessionStorage.getItem("cabonurse_chat_seen")) {
+    // Only on the home page: on ad landing pages it would cover the headline.
+    if (location.pathname === "/" && !sessionStorage.getItem("cabonurse_chat_seen")) {
       setTimeout(function () {
         openPanel();
         sessionStorage.setItem("cabonurse_chat_seen", "1");
@@ -88,5 +89,18 @@
   toggle.setAttribute("aria-pressed", currentTheme() === "dark" ? "true" : "false");
   toggle.addEventListener("click", function () {
     applyTheme(currentTheme() === "dark" ? "light" : "dark");
+  });
+})();
+
+// Conversion events for Google Ads / GA4: fires on any WhatsApp or phone link.
+(function () {
+  "use strict";
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest && e.target.closest("a[href]");
+    if (!a || typeof window.gtag !== "function") return;
+    var href = a.getAttribute("href") || "";
+    var name = href.indexOf("https://wa.me/") === 0 ? "whatsapp_click"
+             : href.indexOf("tel:") === 0 ? "phone_click" : null;
+    if (name) window.gtag("event", name, { link_url: href, page_path: location.pathname });
   });
 })();
