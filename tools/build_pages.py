@@ -171,7 +171,7 @@ SAFETY = """  <section class="sec-beige-dim">
     <div class="container">
       <div class="safety">
         <h2>Safety first</h2>
-        <p>Every session starts with a brief health screening by a licensed nurse. IV therapy is not a substitute for emergency care. For emergencies, call 911.</p>
+        <p>Every session starts with a brief health screening by a registered nurse. IV therapy is not a substitute for emergency care. For emergencies, call 911.</p>
       </div>
     </div>
   </section>
@@ -198,7 +198,7 @@ iv_body = section("sec-beige", "IV options", "Choose what fits your day",
 iv_body += section("sec-navy", "How it works", "Three simple steps", steps([
     ("Message us on WhatsApp", "Tell us where you&rsquo;re staying and which option you&rsquo;d like."),
     ("A nurse confirms availability and pricing", "You get a clear price in USD before anyone is dispatched."),
-    ("We arrive at your door in 20&ndash;60 minutes", "A licensed nurse brings sealed, sterile supplies to your hotel, villa or home."),
+    ("We arrive at your door in 20&ndash;60 minutes", "A registered nurse brings sealed, sterile supplies to your hotel, villa or home."),
 ]))
 iv_body += SAFETY
 iv_body += section("sec-beige", "Coverage", "Arrival times across Los Cabos", """      <div class="coverage-list">
@@ -208,15 +208,15 @@ iv_body += section("sec-beige", "Coverage", "Arrival times across Los Cabos", ""
       </div>""")
 iv_body += faq_section([
     ("How long does a session take?", "Most sessions take 45&ndash;75 minutes depending on the option you choose, plus a short health screening before we start. A nurse usually arrives within 20&ndash;60 minutes of confirming."),
-    ("Is it safe?", "Every session is administered by a COFEPRIS-licensed nurse using sealed, sterile, single-use supplies, and starts with a brief health screening. If something isn&rsquo;t right for you, the nurse will tell you and won&rsquo;t proceed. IV therapy is not a substitute for emergency care &mdash; for emergencies, call 911."),
+    ("Is it safe?", "Every session is administered by a registered nurse using sealed, sterile, single-use supplies, and starts with a brief health screening. If something isn&rsquo;t right for you, the nurse will tell you and won&rsquo;t proceed. IV therapy is not a substitute for emergency care &mdash; for emergencies, call 911."),
     ("Can you come to a yacht?", "Yes. We visit boats docked at marinas in Cabo San Lucas and San Jos&eacute; del Cabo. Send us the marina and slip number on WhatsApp when you message."),
     ("How do I pay?", "Pricing is confirmed in USD on WhatsApp before a nurse is dispatched, and we&rsquo;ll tell you the accepted payment methods at that time. We don&rsquo;t bill insurance."),
 ], "sec-beige-dim")
 PAGES["/iv-therapy/"] = dict(
     title="Mobile IV Therapy in Los Cabos | Cabo Nurse",
-    desc="Mobile IV therapy in Los Cabos: hydration, vitamins and electrolytes administered by COFEPRIS-licensed nurses at your hotel, villa or home in 20–60 minutes.",
+    desc="Mobile IV therapy in Los Cabos: hydration, vitamins and electrolytes administered by registered nurses at your hotel, villa or home in 20–60 minutes.",
     h1="Mobile IV Therapy in Los Cabos",
-    intro="Hydration, vitamins and electrolytes administered by COFEPRIS-licensed nurses at your hotel, villa or home. Usually within 20&ndash;60 minutes, anywhere from Cabo San Lucas to San Jos&eacute; del Cabo.",
+    intro="Hydration, vitamins and electrolytes administered by registered nurses at your hotel, villa or home. Usually within 20&ndash;60 minutes, anywhere from Cabo San Lucas to San Jos&eacute; del Cabo.",
     body=iv_body, wa="Hi, I'd like to book IV therapy in Los Cabos", kicker="Mobile IV therapy")
 
 # ---------------------------------------------------------------- short pages
@@ -225,7 +225,7 @@ def short(path, title, desc, h1, intro, kicker, incl, faqs, wa, steps_tail):
     body += section("sec-navy", "How it works", "Three simple steps", steps([
         ("Message or call us", "Tell us where you are and what you need."),
         steps_tail,
-        ("We arrive in 20&ndash;60 minutes", "A licensed clinician comes to your hotel, villa or home."),
+        ("We arrive in 20&ndash;60 minutes", "A registered clinician comes to your hotel, villa or home."),
     ]))
     body += SAFETY
     body += faq_section(faqs)
@@ -233,11 +233,11 @@ def short(path, title, desc, h1, intro, kicker, incl, faqs, wa, steps_tail):
 
 
 short("/doctor-house-calls/", "Doctor House Calls in Los Cabos | Cabo Nurse",
-      "Licensed physician house calls in Los Cabos. Bilingual doctors evaluate and treat you at your hotel, villa or home, usually within 20–60 minutes.",
+      "Registered physician house calls in Los Cabos. Bilingual doctors evaluate and treat you at your hotel, villa or home, usually within 20–60 minutes.",
       "Doctor House Calls in Los Cabos",
-      "A licensed bilingual physician evaluates and treats you at your hotel, villa or home &mdash; no waiting room, no transport. Usually within 20&ndash;60 minutes.",
+      "A registered bilingual physician evaluates and treats you at your hotel, villa or home &mdash; no waiting room, no transport. Usually within 20&ndash;60 minutes.",
       "Doctor house calls",
-      ["In-person evaluation by a licensed physician", "Treatment and prescriptions when medically appropriate", "Care in English or Spanish", "A visit summary you can keep for your records"],
+      ["In-person evaluation by a registered physician", "Treatment and prescriptions when medically appropriate", "Care in English or Spanish", "A visit summary you can keep for your records"],
       [("How fast can a doctor arrive?", "Usually within 20&ndash;60 minutes depending on your location in Los Cabos."),
        ("Do I need an appointment?", "No. Message us on WhatsApp and we confirm availability and pricing right away."),
        ("What about emergencies?", "House calls are not a substitute for emergency care. For emergencies, call 911.")],
@@ -245,21 +245,21 @@ short("/doctor-house-calls/", "Doctor House Calls in Los Cabos | Cabo Nurse",
       ("A doctor confirms availability and pricing", "You get a clear price in USD before we dispatch."))
 
 short("/private-nursing/", "Private Nursing in Los Cabos | Cabo Nurse",
-      "Private nursing in Los Cabos: licensed bilingual nurses for single visits or 8, 12 and 24-hour shifts at your hotel, villa or home.",
+      "Private nursing in Los Cabos: registered bilingual nurses for single visits or 8, 12 and 24-hour shifts at your hotel, villa or home.",
       "Private Nursing in Los Cabos",
-      "Licensed bilingual nurses at your hotel, villa or home &mdash; for a single visit or private-duty shifts of 8, 12 or 24 hours.",
+      "Registered bilingual nurses at your hotel, villa or home &mdash; for a single visit or private-duty shifts of 8, 12 or 24 hours.",
       "Private nursing",
       ["Medication administration and reminders", "Vitals monitoring and care notes", "Injections and IV line care as prescribed", "Single visits or 8, 12 and 24-hour shifts"],
       [("Can I book a nurse for a full day?", "Yes. Private-duty shifts of 8, 12 or 24 hours are available &mdash; message us for a quote."),
-       ("Are your nurses licensed?", "Yes. Our team is COFEPRIS-licensed and bilingual."),
+       ("Are your nurses registered?", "Yes. Our team of registered nurses and physicians is bilingual."),
        ("How is it priced?", "Pricing is confirmed in USD on WhatsApp before we dispatch.")],
       "Hi, I'd like to arrange private nursing in Los Cabos",
       ("A nurse confirms availability and pricing", "We agree on schedule and price before anyone is dispatched."))
 
 short("/wound-care/", "Wound Care at Home in Los Cabos | Cabo Nurse",
-      "Wound care in Los Cabos: sterile dressing changes and post-op support from licensed nurses at your hotel, villa or home.",
+      "Wound care in Los Cabos: sterile dressing changes and post-op support from registered nurses at your hotel, villa or home.",
       "Wound Care at Home in Los Cabos",
-      "Sterile dressing changes and post-procedure support from licensed nurses, delivered to your hotel, villa or home.",
+      "Sterile dressing changes and post-procedure support from registered nurses, delivered to your hotel, villa or home.",
       "Wound care",
       ["Sterile dressing changes with sealed supplies", "Care for surgical sites, incisions and travel injuries", "Monitoring and clear instructions for follow-up", "Repeat visits on a schedule that suits you"],
       [("How long is a visit?", "A typical wound care visit takes about 30 minutes."),
@@ -269,9 +269,9 @@ short("/wound-care/", "Wound Care at Home in Los Cabos | Cabo Nurse",
       ("A nurse confirms availability and pricing", "You get a clear price in USD before we dispatch."))
 
 short("/senior-care/", "Senior Concierge Care in Los Cabos | Cabo Nurse",
-      "Senior concierge care in Los Cabos: licensed nurses for recurring home visits, vitals, mobility support and medication reminders.",
+      "Senior concierge care in Los Cabos: registered nurses for recurring home visits, vitals, mobility support and medication reminders.",
       "Senior Concierge Care in Los Cabos",
-      "Recurring, personal care for residents and long-stay visitors &mdash; licensed nurses who come to the home, on a schedule that works for the family.",
+      "Recurring, personal care for residents and long-stay visitors &mdash; registered nurses who come to the home, on a schedule that works for the family.",
       "Senior concierge care",
       ["Vitals checks and care notes", "Mobility assistance and companionship", "Medication reminders and management support", "A recurring schedule built around your household"],
       [("Can visits be recurring?", "Yes. We build a recurring plan around your household rather than a one-off visit."),
@@ -281,19 +281,12 @@ short("/senior-care/", "Senior Concierge Care in Los Cabos | Cabo Nurse",
       ("A nurse confirms availability and pricing", "We agree on a schedule and price before the first visit."))
 
 # ---------------------------------------------------------------- legal
-PH = lambda t: f'<span class="ph">[PENDIENTE: {t}]</span>'
 legal_body = f"""  <section class="sec-beige">
     <div class="container legal-body">
-      <h2>Datos de la empresa / Company information</h2>
-      <dl>
-        <div><dt>Razón social</dt><dd>{PH("razón social")}</dd></div>
-        <div><dt>Dirección física</dt><dd>{PH("dirección física")}</dd></div>
-        <div><dt>Licencia o aviso de funcionamiento COFEPRIS</dt><dd>{PH("número y fecha")}</dd></div>
-        <div><dt>Responsable sanitario</dt><dd>{PH("nombre completo")} &middot; Cédula profesional: {PH("número")}</dd></div>
-        <div><dt>Contacto</dt><dd>{PHONE_TXT} &middot; <a href="mailto:care@cabonurse.com">care@cabonurse.com</a></dd></div>
-      </dl>
       <h2 id="privacidad">Aviso de privacidad / Privacy notice</h2>
-      <p>{PH("pegar aviso de privacidad integral conforme a la LFPDPPP")}</p>
+      <p>Para dudas sobre privacidad y datos personales escríbanos a <a href="mailto:care@cabonurse.com">care@cabonurse.com</a>. / For privacy questions, contact <a href="mailto:care@cabonurse.com">care@cabonurse.com</a>.</p>
+      <h2>Contacto / Contact</h2>
+      <p>{PHONE_TXT} &middot; <a href="mailto:care@cabonurse.com">care@cabonurse.com</a></p>
       <h2>Emergencias</h2>
       <p>Nuestros servicios no sustituyen la atención de urgencias. Para emergencias llame al 911. / Our services are not a substitute for emergency care. For emergencies, call 911.</p>
     </div>
@@ -301,7 +294,7 @@ legal_body = f"""  <section class="sec-beige">
 """
 PAGES["/legal/"] = dict(
     title="Legal Information | Cabo Nurse",
-    desc="Company, COFEPRIS licence, sanitary officer and privacy information for Cabo Nurse.",
+    desc="Legal and privacy information for Cabo Nurse.",
     h1="Legal information", intro="Información legal y de cumplimiento de Cabo Nurse.",
     body=legal_body, wa="Hi, I have a question about Cabo Nurse", kicker="Legal")
 
