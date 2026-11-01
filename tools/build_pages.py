@@ -4,6 +4,7 @@ index.html se edita a mano; este script reutiliza su header, footer, barra móvi
 y widget de chat para que todas las páginas compartan el mismo marco.
 Uso:  python3 tools/build_pages.py
 """
+import json
 import re
 from html import escape
 from pathlib import Path
@@ -48,7 +49,7 @@ def faq_html(items):
     return "\n".join(f"      <details><summary>{q}</summary><p>{a}</p></details>" for q, a in items)
 
 
-def page(path, title, desc, h1, intro, body, wa_text, kicker, hero_extra="", wa_label="Message us on WhatsApp"):
+def page(path, title, desc, h1, intro, body, wa_text, kicker, hero_extra="", wa_label="Message us on WhatsApp", robots="index, follow"):
     url = f"{DOMAIN}{path}"
     t, d = escape(title), escape(desc)
     return f"""<!DOCTYPE html>
@@ -58,7 +59,7 @@ def page(path, title, desc, h1, intro, body, wa_text, kicker, hero_extra="", wa_
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{t}</title>
 <meta name="description" content="{d}">
-<meta name="robots" content="index, follow">
+<meta name="robots" content="{robots}">
 <link rel="canonical" href="{url}">
 <meta name="theme-color" content="#0F2341">
 
@@ -180,7 +181,9 @@ SAFETY = """  <section class="sec-beige-dim">
 PAGES = {}
 
 # ---------------------------------------------------------------- IV therapy
-IV_PRICES = {"Hydration": 129, "Hydration + Vitamins": 149, "Recovery": 159, "Immunity": 159, "Athletic recovery": 179}
+IV_API = json.loads((SITE.parent.parent / "api" / "_prices.json").read_text(encoding="utf-8"))
+IV_KEYS = {v["name"]: k for k, v in IV_API.items()}
+IV_PRICES = {v["name"]: v["price"] for v in IV_API.values()}
 IV_OPTIONS = [
     ("Hydration", "Fluids and electrolytes", ["Fluids and electrolytes to rehydrate", "A simple, light option after sun, flights or long days", "About 45 minutes"]),
     ("Hydration + Vitamins", "Our most popular choice", ["Hydration base with B-complex and vitamin C", "Replenish and refresh in one visit", "About 60 minutes"]),
@@ -192,10 +195,13 @@ iv_cards = ""
 for name, sub, bullets in IV_OPTIONS:
     li = "".join(f"<li>{b}</li>" for b in bullets)
     iv_cards += (f'        <div class="opt-card"><h3>{name}</h3><p class="opt-sub">{sub}</p><ul>{li}</ul>'
-                 f'<div class="opt-price">From ${IV_PRICES[name]} USD</div></div>\n')
+                 f'<div class="opt-price">From ${IV_PRICES[name]} USD</div>'
+                 f'<form class="pay-form" method="POST" action="/api/checkout"><input type="hidden" name="option" value="{IV_KEYS[name]}">'
+                 f'<button class="btn btn-outline-navy btn-sm" type="submit">Pay 50% deposit &middot; ${IV_PRICES[name] / 2:.2f}</button></form></div>\n')
 iv_body = section("sec-beige", "IV options", "Choose what fits your day",
                   f'      <div class="opt-grid">\n{iv_cards}      </div>\n'
-                  '      <p class="coverage-note">The nurse confirms the exact formula after a short health screening. Pricing is confirmed in USD before we dispatch.</p>')
+                  '      <p class="coverage-note">Secure your visit with a 50% deposit online (secure checkout by Stripe), or message us on WhatsApp. The nurse confirms the exact formula after a short health screening, and the remaining balance is paid after the session.</p>')
+iv_body = iv_body.replace('<section class="sec-beige">', '<section class="sec-beige" id="iv-options">', 1)
 iv_body += section("sec-navy", "How it works", "Three simple steps", steps([
     ("Message us on WhatsApp", "Tell us where you&rsquo;re staying and which option you&rsquo;d like."),
     ("A nurse confirms availability and pricing", "You get a clear price in USD before anyone is dispatched."),
@@ -212,7 +218,7 @@ iv_body += section("sec-beige-dim", "Why Cabo Nurse", "Why choose Cabo Nurse", "
 iv_body += section("sec-navy", "What to expect", "What to expect", """      <ul class="incl">
         <li>A brief health screening by a licensed nurse before every session.</li>
         <li>Sessions take 45&ndash;60 minutes.</li>
-        <li>Payment by card or cash after the session.</li>
+        <li>A 50% deposit online secures your visit; the remaining balance is paid by card or cash after the session.</li>
       </ul>
       <p class="coverage-note"><b>Not for emergencies, call 911.</b></p>""")
 iv_body += section("sec-beige", "Coverage", "Arrival times across Los Cabos", """      <div class="coverage-list">
@@ -224,7 +230,7 @@ iv_body += faq_section([
     ("How long does a session take?", "Sessions take 45&ndash;60 minutes, plus a short health screening before we start. A nurse usually arrives within 20&ndash;60 minutes of confirming."),
     ("Is it safe?", "Every session is administered by a licensed nurse using sealed, sterile, single-use supplies, and starts with a brief health screening. If something isn&rsquo;t right for you, the nurse will tell you and won&rsquo;t proceed. IV therapy is not a substitute for emergency care &mdash; for emergencies, call 911."),
     ("Can you come to a yacht?", "Yes. We visit boats docked at marinas in Cabo San Lucas and San Jos&eacute; del Cabo. Send us the marina and slip number on WhatsApp when you message."),
-    ("How do I pay?", "Payment is by card or cash after the session. Pricing is confirmed in USD on WhatsApp before a nurse is dispatched, and there is no booking fee."),
+    ("How do I pay?", "You can pay a 50% deposit online through secure Stripe checkout; the remaining balance is paid by card or cash after the session. Pricing is confirmed in USD before a nurse is dispatched, and there is no booking fee."),
 ], "sec-beige-dim")
 PAGES["/iv-therapy/"] = dict(
     title="IV Therapy Cabo San Lucas | Mobile IV in Los Cabos | Cabo Nurse",
@@ -313,6 +319,12 @@ legal_body = f"""  <section class="sec-beige">
     </div>
   </section>
 """
+PAGES["/iv-therapy/thanks/"] = dict(
+    title="Deposit received | Cabo Nurse",
+    desc="Your IV therapy deposit was received.",
+    h1="Deposit received", intro="Thank you. One last step: message us on WhatsApp with your location so a nurse can confirm availability and arrival time. The remaining 50% is paid after the session.",
+    body="", wa="Hi, I just paid my IV therapy deposit", kicker="IV therapy", wa_label="Message us on WhatsApp", robots="noindex, nofollow")
+
 PAGES["/legal/"] = dict(
     title="Legal Information | Cabo Nurse",
     desc="Legal and privacy information for Cabo Nurse.",
@@ -324,9 +336,9 @@ def main():
     for path, p in PAGES.items():
         out = SITE / path.strip("/") / "index.html"
         out.parent.mkdir(parents=True, exist_ok=True)
-        out.write_text(page(path, p["title"], p["desc"], p["h1"], p["intro"], p["body"], p["wa"], p["kicker"], p.get("hero_extra", ""), p.get("wa_label", "Message us on WhatsApp")), encoding="utf-8")
+        out.write_text(page(path, p["title"], p["desc"], p["h1"], p["intro"], p["body"], p["wa"], p["kicker"], p.get("hero_extra", ""), p.get("wa_label", "Message us on WhatsApp"), p.get("robots", "index, follow")), encoding="utf-8")
         print("wrote", out.relative_to(SITE.parent.parent))
-    urls = ["/"] + list(PAGES)
+    urls = ["/"] + [u for u, p in PAGES.items() if "noindex" not in p.get("robots", "")]
     xml = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
     xml += [f"  <url><loc>{DOMAIN}{u}</loc></url>" for u in urls]
     xml.append("</urlset>")

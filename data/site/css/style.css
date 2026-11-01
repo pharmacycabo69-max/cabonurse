@@ -529,3 +529,5 @@ body{ padding-bottom:0; }
 .compare th, .compare td{ text-align:left; padding:14px 16px; border-bottom:1px solid var(--line); vertical-align:top; }
 .compare th{ font-weight:600; width:38%; color:var(--gold-accent); }
 .compare td{ font-weight:700; }
+.pay-form{ margin:0; }
+.pay-form .btn{ width:100%; justify-content:center; }

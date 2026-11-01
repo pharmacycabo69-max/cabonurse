@@ -112,20 +112,20 @@ gtag('config', 'AW-XXXXXXXXXX');
     </div>
   </section>
 
-  <section class="sec-beige">
+  <section class="sec-beige" id="iv-options">
     <div class="container">
       <div class="sec-head">
         <span class="label">IV options</span>
         <h2>Choose what fits your day</h2>
       </div>
       <div class="opt-grid">
-        <div class="opt-card"><h3>Hydration</h3><p class="opt-sub">Fluids and electrolytes</p><ul><li>Fluids and electrolytes to rehydrate</li><li>A simple, light option after sun, flights or long days</li><li>About 45 minutes</li></ul><div class="opt-price">From $129 USD</div></div>
-        <div class="opt-card"><h3>Hydration + Vitamins</h3><p class="opt-sub">Our most popular choice</p><ul><li>Hydration base with B-complex and vitamin C</li><li>Replenish and refresh in one visit</li><li>About 60 minutes</li></ul><div class="opt-price">From $149 USD</div></div>
-        <div class="opt-card"><h3>Recovery</h3><p class="opt-sub">After sun, travel or a late night</p><ul><li>Fluids and electrolytes to rehydrate</li><li>Vitamin blend to help you feel refreshed</li><li>Delivered to your hotel room or villa</li></ul><div class="opt-price">From $159 USD</div></div>
-        <div class="opt-card"><h3>Immunity</h3><p class="opt-sub">Vitamin-focused</p><ul><li>Vitamin C and zinc blend to replenish</li><li>Popular before or during a trip</li><li>About 60 minutes</li></ul><div class="opt-price">From $159 USD</div></div>
-        <div class="opt-card"><h3>Athletic recovery</h3><p class="opt-sub">After golf, fishing, surf or training</p><ul><li>Electrolytes and fluids to rehydrate</li><li>Magnesium and B vitamins to replenish</li><li>About 60 minutes</li></ul><div class="opt-price">From $179 USD</div></div>
+        <div class="opt-card"><h3>Hydration</h3><p class="opt-sub">Fluids and electrolytes</p><ul><li>Fluids and electrolytes to rehydrate</li><li>A simple, light option after sun, flights or long days</li><li>About 45 minutes</li></ul><div class="opt-price">From $129 USD</div><form class="pay-form" method="POST" action="/api/checkout"><input type="hidden" name="option" value="hydration"><button class="btn btn-outline-navy btn-sm" type="submit">Pay 50% deposit &middot; $64.50</button></form></div>
+        <div class="opt-card"><h3>Hydration + Vitamins</h3><p class="opt-sub">Our most popular choice</p><ul><li>Hydration base with B-complex and vitamin C</li><li>Replenish and refresh in one visit</li><li>About 60 minutes</li></ul><div class="opt-price">From $149 USD</div><form class="pay-form" method="POST" action="/api/checkout"><input type="hidden" name="option" value="hydration-vitamins"><button class="btn btn-outline-navy btn-sm" type="submit">Pay 50% deposit &middot; $74.50</button></form></div>
+        <div class="opt-card"><h3>Recovery</h3><p class="opt-sub">After sun, travel or a late night</p><ul><li>Fluids and electrolytes to rehydrate</li><li>Vitamin blend to help you feel refreshed</li><li>Delivered to your hotel room or villa</li></ul><div class="opt-price">From $159 USD</div><form class="pay-form" method="POST" action="/api/checkout"><input type="hidden" name="option" value="recovery"><button class="btn btn-outline-navy btn-sm" type="submit">Pay 50% deposit &middot; $79.50</button></form></div>
+        <div class="opt-card"><h3>Immunity</h3><p class="opt-sub">Vitamin-focused</p><ul><li>Vitamin C and zinc blend to replenish</li><li>Popular before or during a trip</li><li>About 60 minutes</li></ul><div class="opt-price">From $159 USD</div><form class="pay-form" method="POST" action="/api/checkout"><input type="hidden" name="option" value="immunity"><button class="btn btn-outline-navy btn-sm" type="submit">Pay 50% deposit &middot; $79.50</button></form></div>
+        <div class="opt-card"><h3>Athletic recovery</h3><p class="opt-sub">After golf, fishing, surf or training</p><ul><li>Electrolytes and fluids to rehydrate</li><li>Magnesium and B vitamins to replenish</li><li>About 60 minutes</li></ul><div class="opt-price">From $179 USD</div><form class="pay-form" method="POST" action="/api/checkout"><input type="hidden" name="option" value="athletic-recovery"><button class="btn btn-outline-navy btn-sm" type="submit">Pay 50% deposit &middot; $89.50</button></form></div>
       </div>
-      <p class="coverage-note">The nurse confirms the exact formula after a short health screening. Pricing is confirmed in USD before we dispatch.</p>
+      <p class="coverage-note">Secure your visit with a 50% deposit online (secure checkout by Stripe), or message us on WhatsApp. The nurse confirms the exact formula after a short health screening, and the remaining balance is paid after the session.</p>
     </div>
   </section>
   <section class="sec-navy">
@@ -166,7 +166,7 @@ gtag('config', 'AW-XXXXXXXXXX');
       <ul class="incl">
         <li>A brief health screening by a licensed nurse before every session.</li>
         <li>Sessions take 45&ndash;60 minutes.</li>
-        <li>Payment by card or cash after the session.</li>
+        <li>A 50% deposit online secures your visit; the remaining balance is paid by card or cash after the session.</li>
       </ul>
       <p class="coverage-note"><b>Not for emergencies, call 911.</b></p>
     </div>
@@ -194,7 +194,7 @@ gtag('config', 'AW-XXXXXXXXXX');
       <details><summary>How long does a session take?</summary><p>Sessions take 45&ndash;60 minutes, plus a short health screening before we start. A nurse usually arrives within 20&ndash;60 minutes of confirming.</p></details>
       <details><summary>Is it safe?</summary><p>Every session is administered by a licensed nurse using sealed, sterile, single-use supplies, and starts with a brief health screening. If something isn&rsquo;t right for you, the nurse will tell you and won&rsquo;t proceed. IV therapy is not a substitute for emergency care &mdash; for emergencies, call 911.</p></details>
       <details><summary>Can you come to a yacht?</summary><p>Yes. We visit boats docked at marinas in Cabo San Lucas and San Jos&eacute; del Cabo. Send us the marina and slip number on WhatsApp when you message.</p></details>
-      <details><summary>How do I pay?</summary><p>Payment is by card or cash after the session. Pricing is confirmed in USD on WhatsApp before a nurse is dispatched, and there is no booking fee.</p></details>
+      <details><summary>How do I pay?</summary><p>You can pay a 50% deposit online through secure Stripe checkout; the remaining balance is paid by card or cash after the session. Pricing is confirmed in USD before a nurse is dispatched, and there is no booking fee.</p></details>
       </div>
     </div>
   </section>

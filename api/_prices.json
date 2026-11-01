@@ -1,0 +1,7 @@
+{
+  "hydration":           { "name": "Hydration",           "price": 129 },
+  "hydration-vitamins":  { "name": "Hydration + Vitamins", "price": 149 },
+  "recovery":            { "name": "Recovery",            "price": 159 },
+  "immunity":            { "name": "Immunity",            "price": 159 },
+  "athletic-recovery":   { "name": "Athletic recovery",   "price": 179 }
+}
