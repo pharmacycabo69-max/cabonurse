@@ -1,5 +1,4 @@
 {
   "name": "cabonurse",
-  "private": true,
-  "engines": { "node": "20.x" }
+  "private": true
 }
